@@ -62,6 +62,8 @@ flutter:
   assets:
     - lib/assets/images/logo.png
     - lib/assets/images/logo2.png
+    - lib/assets/images/logo3.png
+    - lib/assets/images/background.jpg
     - lib/assets/images/agenda.png
     - lib/assets/images/test.jpg
     - lib/assets/images/sync_up.jpg
