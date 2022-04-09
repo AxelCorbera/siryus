@@ -1,7 +1,10 @@
 import 'dart:io';
 
+import 'package:fixapp/constants/themes.dart';
+import 'package:fixapp/globals.dart' as globals;
 import 'package:fixapp/pages/sync_up.dart';
-import 'package:fixapp/widget/agenda.dart';
+import 'package:fixapp/widget/home/agenda.dart';
+import 'package:fixapp/widget/home/alertas.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -23,11 +26,12 @@ class _HomeState extends State<Home> {
   bool alertas = false;
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   Widget build(BuildContext) {
+    _calcularAlertas();
     return Scaffold(
         key: _scaffoldKey,
         appBar: AppBar(
-          title: Text('Fixapp'),
-          backgroundColor: Theme.of(context).primaryColor,
+          title: Text('Siryus'),
+          backgroundColor: Colores.background,
           actions: [
             PopupMenuButton<String>(
               onSelected: (value){
@@ -54,12 +58,13 @@ class _HomeState extends State<Home> {
             //IconButton(onPressed: (){}, icon: Icon(Icons.more_vert))
           ],
           ),
+        backgroundColor: Colors.grey[300],
         drawer: _drawer(),
         body: Column(
           children: [
             Container(
               height: 50,
-              color: Theme.of(context).primaryColor,
+              color: Colores.gris,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
@@ -118,7 +123,9 @@ class _HomeState extends State<Home> {
               ),
             ),
             if(agenda)
-              new Agenda()
+              new Agenda(),
+            if(alertas)
+              new Alertas()
           ],
         ),
       );
@@ -140,7 +147,7 @@ class _HomeState extends State<Home> {
                     end: Alignment.bottomRight,
                     colors: [
                       Colors.white,
-                      Theme.of(context).primaryColor
+                      Colores.background
                     ]
                   )
                 ),
@@ -151,7 +158,7 @@ class _HomeState extends State<Home> {
                   width: 250,
                   decoration: BoxDecoration(
                       image: DecorationImage(
-                          image: AssetImage('lib/assets/images/logo2.png'),
+                          image: AssetImage('lib/assets/images/logo3.png'),
                           fit: BoxFit.fitWidth),
                   ),
                 ),
@@ -160,7 +167,10 @@ class _HomeState extends State<Home> {
           ),
           ListTile(
             leading: Icon(Icons.send),
-            title: Text("Reportar error"),
+            title: Text("Reportar error",
+            style: TextStyle(
+              color: Colors.black
+            ),),
             onTap: (){
               Navigator.of(context).pop();
               _reportar(context);
@@ -168,7 +178,10 @@ class _HomeState extends State<Home> {
           ),
           ListTile(
             leading: Icon(Icons.settings),
-            title: Text("Ajustes"),
+            title: Text("Ajustes",
+              style: TextStyle(
+                  color: Colors.black
+              ),),
             onTap: (){
               Navigator.of(context).pop();
               Navigator.of(context).pushNamed("/Change_Code")
@@ -177,7 +190,10 @@ class _HomeState extends State<Home> {
           ),
           ListTile(
             leading: Icon(Icons.info),
-            title: Text("Información"),
+            title: Text("Información",
+              style: TextStyle(
+                  color: Colors.black
+              ),),
             onTap: (){
               Navigator.of(context).pop();
               Navigator.of(context).pushNamed("/Information");
@@ -185,7 +201,10 @@ class _HomeState extends State<Home> {
           ),
           ListTile(
             leading: Icon(Icons.power_settings_new),
-            title: Text("Salir"),
+            title: Text("Salir",
+              style: TextStyle(
+                  color: Colors.black
+              ),),
             onTap: (){
               Navigator.of(context).pop();
               _salir(context);
@@ -220,6 +239,9 @@ class _HomeState extends State<Home> {
                     ),),
                 ),
                 TextField(
+                  decoration: InputDecoration(
+                    fillColor: Colors.grey
+                  ),
                   minLines: 5,
                   maxLines: 10,
                 ),
@@ -228,11 +250,11 @@ class _HomeState extends State<Home> {
                     FlatButton(onPressed: (){
                       Navigator.of(context).pop();
                     }, child: Text("CANCELAR",
-                    style: TextStyle(color: Theme.of(context).primaryColor,fontSize: 15),)),
+                    style: TextStyle(color: Colors.black,fontSize: 15),)),
                     FlatButton(onPressed: (){
                       Navigator.of(context).pop();
                     }, child: Text("ENVIAR",
-                      style: TextStyle(color: Theme.of(context).primaryColor,fontSize: 15),)),
+                      style: TextStyle(color: Colors.black,fontSize: 15),)),
                   ],
                 )
               ],
@@ -304,4 +326,15 @@ class _HomeState extends State<Home> {
 
 
   }
+  void _calcularAlertas() {
+    alerts=0;
+    globals.expedientes.forEach((element) {
+      element.comments.forEach((element) {
+        if(!element.read){
+          alerts++;
+        }
+      });
+    });
+  }
 }
+

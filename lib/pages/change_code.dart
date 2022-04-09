@@ -1,3 +1,4 @@
+import 'package:fixapp/constants/themes.dart';
 import 'package:flutter/material.dart';
 
 import '../globals.dart';
@@ -14,7 +15,7 @@ class _Change_CodeState extends State<Change_Code> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Ajustes'),
-        backgroundColor: Theme.of(context).primaryColor,
+        backgroundColor: Colores.background,
         actions: [
           IconButton(onPressed: () {
           if(_keyform.currentState!.validate()){
@@ -51,6 +52,9 @@ class _Change_CodeState extends State<Change_Code> {
                 style: TextStyle(fontSize: 16),
               ),
             ),
+            SizedBox(
+              height: 20,
+            ),
             Container(
               width: MediaQuery.of(context).size.width / 1.1,
               child: Form(
@@ -60,6 +64,7 @@ class _Change_CodeState extends State<Change_Code> {
                   keyboardType: TextInputType.number,
                   obscureText: _passwordVisible ? false : true,
                   decoration: InputDecoration(
+                    fillColor: Colors.grey,
                     hintStyle: TextStyle(color: Theme.of(context).primaryColor),
                     labelStyle: TextStyle(height: 0.2),
                     focusedBorder: OutlineInputBorder(
@@ -76,7 +81,7 @@ class _Change_CodeState extends State<Change_Code> {
                         _passwordVisible
                             ? Icons.visibility_off
                             : Icons.visibility,
-                        color: Theme.of(context).primaryColorDark,
+                        color: Colors.black,
                       ),
                       onPressed: () {
                         // Update the state i.e. toogle the state of passwordVisible variable

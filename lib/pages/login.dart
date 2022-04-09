@@ -41,7 +41,17 @@ class _LoginState extends State<Login> {
               ),
               SizedBox(height: MediaQuery.of(context).size.height/9,),
               Container(
-                color: Colores.background,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [
+                        Colores.background,
+                        Colores.gris
+                      ]
+                  ),
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
                 height: MediaQuery.of(context).size.height /1.726,
                 child: Center(
                   child: Column(
@@ -175,7 +185,7 @@ class _LoginState extends State<Login> {
                                   child: Container(
                                     height: 50,
                                     width: double.infinity,
-                                    child: RaisedButton(onPressed: (){
+                                    child: ElevatedButton(onPressed: (){
                                       if(_keyform.currentState!.validate()) {
                                         user = usuario;
                                         pass = contra;
@@ -187,11 +197,13 @@ class _LoginState extends State<Login> {
                                         );
                                       }
                                     },
-                                      color: Colors.white,
+                                      style: ButtonStyle(
+                                        backgroundColor: MaterialStateProperty.resolveWith((states) => Colors.grey[600])
+                                      ),
                                       child: Text(
                                         'ENTRAR',
                                         style: TextStyle(
-                                            color: Colors.black
+                                            color: Colors.white
                                         ),
                                       ),),
                                   ),

@@ -1,3 +1,4 @@
+import 'package:fixapp/constants/themes.dart';
 import 'package:flutter/material.dart';
 
 class Information extends StatefulWidget {
@@ -9,7 +10,7 @@ class _InformationState extends State<Information> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Información'),
-        backgroundColor: Theme.of(context).primaryColor,
+        backgroundColor: Colores.background,
       ),
       body: Center(
         child: Column(

@@ -1,5 +1,7 @@
 import 'dart:core';
 
+import 'package:fixapp/objects/obj_settlement.dart';
+
 class File{
   String name_company;
   String type;
@@ -13,7 +15,11 @@ class File{
   String status;
   String limit_time;
   List<Comment> comments;
-  String settlement;
+  List<Obj_Settlement> settlement;
+  DateTime date;
+  int duration;
+  bool inicio;
+  bool first_visit;
 
   File({required this.name_company,
   required this.type,
@@ -27,11 +33,15 @@ class File{
   required this.status,
   required this.limit_time,
   required this.comments,
-  required this.settlement});
+  required this.settlement,
+  required this.date,
+  required this.duration,
+  required this.inicio,
+  required this.first_visit});
 }
 
 class Comment{
-  String date;
+  DateTime date;
   String author;
   String message;
   bool read;

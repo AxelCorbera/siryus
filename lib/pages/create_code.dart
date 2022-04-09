@@ -1,3 +1,4 @@
+import 'package:fixapp/constants/themes.dart';
 import 'package:fixapp/pages/sync_up.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -15,7 +16,7 @@ class _Create_CodeState extends State<Create_Code> {
   Widget build(BuildContext) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).primaryColor,
+        backgroundColor: Colores.background,
         title: Text("Crear código de bloqueo"),
       ),
       body: SingleChildScrollView(
@@ -40,12 +41,15 @@ class _Create_CodeState extends State<Create_Code> {
                         children: [
                           Container(
                             decoration: BoxDecoration(
-                              color: Colors.white,
+                              color: Colores.gris,
                               borderRadius: BorderRadius.circular(10.0),
                             ),
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: TextFormField(
+                                style: TextStyle(
+                                  color: Colors.white
+                                ),
                                 keyboardType: TextInputType.number,
                                 obscureText: _passwordVisible
                                     ?false:true,
@@ -55,7 +59,8 @@ class _Create_CodeState extends State<Create_Code> {
                                   ),
                                   labelText: 'Codigo',
                                   labelStyle: TextStyle(
-                                      height: 0.2
+                                    color: Colors.white,
+                                      height: 0.2,
                                   ),
                                   focusedBorder: OutlineInputBorder(
                                     borderSide: BorderSide(color: Colors.white),
@@ -71,7 +76,7 @@ class _Create_CodeState extends State<Create_Code> {
                                       _passwordVisible
                                           ? Icons.visibility_off
                                           : Icons.visibility,
-                                      color: Theme.of(context).primaryColorDark,
+                                      color: Colors.white,
                                     ),
                                     onPressed: () {
                                       // Update the state i.e. toogle the state of passwordVisible variable
@@ -99,7 +104,7 @@ class _Create_CodeState extends State<Create_Code> {
                             child: Container(
                               height: 50,
                               width: double.infinity,
-                              child: RaisedButton(onPressed: (){
+                              child: ElevatedButton(onPressed: (){
                                 if(_keyform.currentState!.validate()){
                                   code = codigo;
                                   Navigator.pushAndRemoveUntil(
@@ -109,11 +114,13 @@ class _Create_CodeState extends State<Create_Code> {
                                   );
                                 }
                               },
-                                color: Theme.of(context).primaryColor,
+                                style: ButtonStyle(
+                                    backgroundColor: MaterialStateProperty.resolveWith((states) => Colores.gris)
+                                ),
                                 child: Text(
                                   'ENTRAR',
                                   style: TextStyle(
-                                      color: Theme.of(context).secondaryHeaderColor
+                                      color: Colors.white
                                   ),
                                 ),),
                             ),

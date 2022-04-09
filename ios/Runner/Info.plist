@@ -44,14 +44,18 @@
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-    <string>camera</string>
+    <string>$(PRODUCT_NAME) quiere usar la camara para grabar</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>$(PRODUCT_NAME) quiere usar el microfono para grabar</string>
+    <key>LSApplicationQueriesSchemes</key>
+    <array>
+      <string>tel</string>
+    </array>
     <key>NSLocationWhenInUseUsageDescription</key>
-    <string>Need location when in use</string>
-    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-    <string>Always and when in use!</string>
-    <key>NSLocationUsageDescription</key>
-    <string>Older devices need location.</string>
+    <string>$(PRODUCT_NAME) necesita acceder a tu localizacion cuando este en uso.</string>
     <key>NSLocationAlwaysUsageDescription</key>
-    <string>Can I have location always?</string>
+    <string>$(PRODUCT_NAME) necesita acceder a tu localizacion en segundo plano.</string>
+    <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+    <string>$(PRODUCT_NAME) necesita acceder a tu localizacion cuando este en uso y en segundo plano.</string>
 </dict>
 </plist>
